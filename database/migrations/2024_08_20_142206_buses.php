@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('buses', function (Blueprint $table) {
+            $table->id()->primaryKey();
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate("cascade");
+            $table->string('current_route');
+            $table->string('current_location');
+            $table->integer('passenger_load');
+            $table->integer('max_capacity');
+            $table->integer('bus_number');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
