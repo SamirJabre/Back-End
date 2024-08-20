@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('buses', function (Blueprint $table) {
-            $table->id()->primaryKey();
+            $table->id();
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate("cascade");
             $table->string('current_route');
