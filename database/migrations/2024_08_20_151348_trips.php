@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trips', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('origin');
-            $table->string('destination');
+            $table->id()->primaryKey();
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('bus_id');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
+            $table->json('routes');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
-            $table->
+            $table->string('from');
+            $table->string('to');
             $table->timestamps();
         });
     }
