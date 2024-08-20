@@ -11,7 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id()->primaryKey();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate('cascade');
+            $table->enum('rating',[1,2,3,4,5])->nullable();
+            $table->text('comment');
+            $table->timestamps();
+        });
     }
 
     /**
