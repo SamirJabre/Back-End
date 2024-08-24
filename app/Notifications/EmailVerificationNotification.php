@@ -13,7 +13,7 @@ class EmailVerificationNotification extends Notification
     use Queueable;
     public $message;
     public $subject;
-    public $fromMail;
+    public $fromEmail;
     public $mailer;
     public $otp;
 
@@ -24,6 +24,7 @@ class EmailVerificationNotification extends Notification
     {
         $this->message = 'Your email verification code is: ';
         $this->subject = 'Email Verification';
+        $this->fromEmail = 'samirjabrer@gmail.com';
     }
 
     /**
