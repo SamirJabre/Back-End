@@ -22,7 +22,7 @@ class EmailVerificationNotification extends Notification
      */
     public function __construct()
     {
-        //
+        $this->message = 'Your email verification code is: ';
     }
 
     /**
