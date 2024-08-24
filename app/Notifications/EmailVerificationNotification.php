@@ -25,6 +25,7 @@ class EmailVerificationNotification extends Notification
         $this->message = 'Your email verification code is: ';
         $this->subject = 'Email Verification';
         $this->fromEmail = 'samirjabrer@gmail.com';
+        $this->mailer = 'smtp';
     }
 
     /**
