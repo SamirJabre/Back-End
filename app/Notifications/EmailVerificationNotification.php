@@ -11,6 +11,11 @@ use Otp;
 class EmailVerificationNotification extends Notification
 {
     use Queueable;
+    public $message;
+    public $subject;
+    public $fromMail;
+    public $mailer;
+    public $otp;
 
     /**
      * Create a new notification instance.
