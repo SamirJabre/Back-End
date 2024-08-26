@@ -112,7 +112,6 @@ class AuthController extends Controller
             'otp' => 'required|integer',
         ]);
     
-        // Find the user by email
         $user = User::where('email', $request->email)->first();
     
         if (!$user) {
