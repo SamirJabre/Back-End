@@ -12,9 +12,28 @@ class OtpMail extends Mailable
     public $otp;
     public $user;
 
-    @return void
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
     public function __construct($otp, $user)
     {
         $this->otp = $otp;
         $this->user = $user;
     }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->view('emails.otp')
+                    ->with([
+                        'otp' => $this->otp,
+                        'user' => $this->user,
+                    ]);
+    }
+}
