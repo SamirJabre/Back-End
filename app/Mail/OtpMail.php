@@ -7,3 +7,4 @@ use Illuminate\Queue\SerializesModels;
 
 class OtpMail extends Mailable
 {
+    use Queueable, SerializesModels;
