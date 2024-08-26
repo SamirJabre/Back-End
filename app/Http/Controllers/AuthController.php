@@ -121,7 +121,6 @@ class AuthController extends Controller
             ], 404);
         }
     
-        // Check if the provided OTP matches the one in the user's record
         if ($user->otp === $request->otp) {
             // Update the is_verified field to true
             $user->is_verified = true;
