@@ -6,3 +6,4 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class OtpMail extends Mailable
+{
