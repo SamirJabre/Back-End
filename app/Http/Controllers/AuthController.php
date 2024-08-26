@@ -106,6 +106,40 @@ class AuthController extends Controller
     }
 
 
+    public function validateOtp(Request $request){
+        // Validate the request
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'otp' => 'required|integer',
+        ]);
+    
+        // Find the user by email
+        $user = User::where('email', $request->email)->first();
+    
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        }
+    
+        // Check if the provided OTP matches the one in the user's record
+        if ($user->otp === $request->otp) {
+            // Update the is_verified field to true
+            $user->is_verified = true;
+            $user->save();
+    
+            return response()->json([
+                'status' => 'success',
+                'message' => 'OTP verified successfully. User is now verified.',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid OTP',
+            ], 400);
+        }
+    }
 
 
 
