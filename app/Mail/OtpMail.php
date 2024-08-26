@@ -8,3 +8,8 @@ use Illuminate\Queue\SerializesModels;
 class OtpMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $otp;
+    public $user;
+
+    @return void
