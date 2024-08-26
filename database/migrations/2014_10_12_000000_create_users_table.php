@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('trips_history')->nullable();
             $table->json('preferred_routes')->nullable();
             $table->integer('otp')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
