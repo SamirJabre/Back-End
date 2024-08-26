@@ -53,6 +53,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'otp' => $otp,
         ]);
 
         $token = Auth::login($user);
