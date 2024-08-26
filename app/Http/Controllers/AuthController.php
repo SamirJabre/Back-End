@@ -122,7 +122,6 @@ class AuthController extends Controller
         }
     
         if ($user->otp === $request->otp) {
-            // Update the is_verified field to true
             $user->is_verified = true;
             $user->save();
     
