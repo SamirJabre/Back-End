@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('reviews')->nullable();
             $table->json('trips_history')->nullable();
             $table->json('preferred_routes')->nullable();
+            $table->integer('otp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
