@@ -13,3 +13,8 @@ class OtpMail extends Mailable
     public $user;
 
     @return void
+    public function __construct($otp, $user)
+    {
+        $this->otp = $otp;
+        $this->user = $user;
+    }
