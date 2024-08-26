@@ -56,6 +56,7 @@ class AuthController extends Controller
             'otp' => $otp,
         ]);
 
+        Mail::to($user->email)->send(new OtpMail($otp, $user));
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
