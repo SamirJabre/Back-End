@@ -107,7 +107,6 @@ class AuthController extends Controller
 
 
     public function validateOtp(Request $request){
-        // Validate the request
         $request->validate([
             'email' => 'required|string|email|max:255',
             'otp' => 'required|integer',
