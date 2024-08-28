@@ -25,6 +25,7 @@ class OtpController extends Controller
         if ($user->otp == $request->otp) {
             $user->is_verified = true;
             $user->email_verified_at = now();
+            $user->otp = null;
             $user->save();
     
             return response()->json([
