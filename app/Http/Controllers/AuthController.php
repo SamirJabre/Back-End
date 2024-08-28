@@ -32,6 +32,13 @@ class AuthController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
+        $is_verified = Auth::user()->is_verified;
+        if(!$is_verified){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User is not verified',
+            ], 401);
+        }
 
         $user = Auth::user();
         return response()->json([
