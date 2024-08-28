@@ -27,4 +27,4 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
-Route::get('/delete-unverified', [DeactivatingAccounts::class, 'deleteUnverifiedUsers']);
+Route::post('/delete-unverified', [DeactivatingAccounts::class, 'deleteUnverifiedUsers']);

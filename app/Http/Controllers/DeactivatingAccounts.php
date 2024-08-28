@@ -7,16 +7,8 @@ use Illuminate\Http\Request;
 
 class DeactivatingAccounts extends Controller
 {
-    public function deleteUnverifiedUsers()
+    public function deleteUnverifiedUsers(Request $request)
     {
-        // Fetch unverified users
-        $unverifiedUsers = User::where('is_verified', false)->get();
-
-        // Delete unverified users
-        foreach ($unverifiedUsers as $user) {
-            $user->delete();
-        }
-
-        return response()->json(['message' => 'Unverified users deleted successfully.']);
+        User::where('email', $request->email)->delete();
     }
 }
