@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class DeactivatingAccounts extends Controller
+class DeactivatingAccount extends Controller
 {
     public function deleteUnverifiedUsers(Request $request)
     {
