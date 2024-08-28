@@ -29,15 +29,15 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+                'message' => 'incorrect',
+            ]);
         }
         $is_verified = Auth::user()->is_verified;
         if(!$is_verified){
             return response()->json([
                 'status' => 'error',
-                'message' => 'User is not verified',
-            ], 401);
+                'message' => 'unexisted',
+            ]);
         }
 
         $user = Auth::user();
