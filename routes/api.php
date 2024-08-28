@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DeactivatingAccounts;
+use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +27,4 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
-Route::post('/delete-unverified', [DeactivatingAccounts::class, 'deleteUnverifiedUsers']);
+Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverifiedUsers']);
