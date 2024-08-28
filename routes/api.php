@@ -24,3 +24,5 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('sendotp', 'updateOtpAndSendEmail');
     Route::post('validateotp', 'validateOtp');
 });
+
+Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
