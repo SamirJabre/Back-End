@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('id_photo');
             $table->string('driver_license');
-            $table->integer('assigned_bus');
+            $table->integer('assigned_bus')->nullable();
             $table->json('trips_history')->nullable();
+            $table->integer('rating')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

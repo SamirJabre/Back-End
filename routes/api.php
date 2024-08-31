@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\OtpController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SendOtpAgain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Route::controller(AuthController::class)->group(function () {
 Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
 Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverifiedUsers']);
+Route::post('/search', [SearchController::class, 'searchTrips']);
