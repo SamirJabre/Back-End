@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Driver;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -30,8 +31,18 @@ class TripFactory extends Factory
             ]
         ]),
             'price' => fake()->randomNumber(2),
-            'departure_time' => fake()->dateTime,
-            'arrival_time' => fake()->dateTime,
+            'day' => fake()->randomElement(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']),
+            'departure_time' => function () {
+                $hour = fake()->numberBetween(0, 23);
+                $minute = fake()->randomElement([0, 30]);
+                return sprintf('%02d:%02d', $hour, $minute);
+            },
+            'arrival_time' => function (array $attributes) {
+                $departureTime = DateTime::createFromFormat('H:i', $attributes['departure_time']);
+                $hoursToAdd = fake()->numberBetween(1, 3);
+                $arrivalTime = $departureTime->modify("+{$hoursToAdd} hours");
+                return $arrivalTime->format('H:i');
+            },
             'from' => fake()->city,
             'to' => fake()->city,
         ];

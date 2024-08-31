@@ -19,8 +19,9 @@ return new class extends Migration
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('price');
             $table->json('routes');
-            $table->dateTime('departure_time');
-            $table->dateTime('arrival_time');
+            $table->string('day');
+            $table->time('departure_time');
+            $table->time('arrival_time');
             $table->string('from');
             $table->string('to');
             $table->timestamps();
