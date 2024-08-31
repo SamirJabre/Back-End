@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use function Symfony\Component\String\b;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Driver>
  */
@@ -25,6 +27,7 @@ class DriverFactory extends Factory
             'address' => fake()->address,
             'id_photo' => fake()->imageUrl(),
             'driver_license' => fake()->randomNumber(8),
+            'rating' => fake()->numberBetween(1, 5),
         ];
     }
 }
