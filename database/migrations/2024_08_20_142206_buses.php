@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('driver_id')->nullable();
+            $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate("cascade");
-            $table->string('current_route');
-            $table->string('current_location');
-            $table->integer('passenger_load');
+            $table->string('current_route')->nullable();
+            $table->string('current_location')->nullable();
             $table->integer('max_capacity');
+            $table->integer('passenger_load');
             $table->integer('bus_number');
             $table->rememberToken();
             $table->timestamps();
