@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Bus;
 use App\Models\Driver;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,7 +20,7 @@ class TripFactory extends Factory
     public function definition(): array
     {
         return [
-            'driver_id' => Driver::factory(),
+            'bus_id' => Bus::factory(),
             'routes' => json_encode([
             [
                 'start_stop' => fake()->city,
