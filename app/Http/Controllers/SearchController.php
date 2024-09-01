@@ -13,7 +13,7 @@ class SearchController extends Controller
         $from = $request->input('from');
         $to = $request->input('to');
         $price = $request->input('price');
-        $rating = $request->input('rating');
+        $day = $request->input('day');
 
         $query = Trip::query();
 
@@ -28,9 +28,8 @@ class SearchController extends Controller
         if ($price) {
             $query->where('price', '<=', $price);
         }
-        if ($rating) {
-            $query->join('drivers', 'trips.driver_id', '=', 'drivers.id')
-                  ->where('drivers.rating', '>=', $rating);
+        if ($day) {
+            $query->where('day', $day);
         }
 
         $trips = $query->get();
