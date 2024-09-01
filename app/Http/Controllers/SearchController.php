@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -35,5 +36,16 @@ class SearchController extends Controller
         $trips = $query->get();
 
         return response()->json($trips);
+    }
+
+    public function trips()
+    {
+        $trips = DB::table('trips')
+        ->join('buses', 'trips.bus_id', '=', 'buses.id')
+        ->join('drivers', 'buses.driver_id', '=', 'drivers.id')
+        ->select('trips.day','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name')
+        ->get();
+
+    return $trips;
     }
 }

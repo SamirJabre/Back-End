@@ -29,4 +29,4 @@ Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
 Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverifiedUsers']);
 Route::post('/search', [SearchController::class, 'searchTrips']);
-Route::post('/buses', [SearchController::class, 'searchTrips']);
+Route::get('/trips', [SearchController::class, 'trips']);
