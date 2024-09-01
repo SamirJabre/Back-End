@@ -42,7 +42,7 @@ class SearchController extends Controller
         $trips = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')
         ->join('drivers', 'buses.driver_id', '=', 'drivers.id')
-        ->select('trips.id','trips.day','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name')
+        ->select('trips.id','trips.day','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
         ->get();
 
     return $trips;
