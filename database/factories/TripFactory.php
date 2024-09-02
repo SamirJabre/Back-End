@@ -32,7 +32,7 @@ class TripFactory extends Factory
             ]
         ]),
             'price' => fake()->randomNumber(2),
-            'day' => fake()->randomElement(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']),
+            'date' => fake()->dateTimeBetween('now', '+1 week')->format('Y-m-d'),
             'departure_time' => function () {
                 $hour = fake()->numberBetween(0, 23);
                 $minute = fake()->randomElement([0, 30]);

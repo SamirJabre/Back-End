@@ -13,7 +13,7 @@ class SearchController extends Controller
         $from = $request->input('from');
         $to = $request->input('to');
         $price = $request->input('price');
-        $day = $request->input('day');
+        $date = $request->input('date');
 
         $query = Trip::query();
 
@@ -28,8 +28,8 @@ class SearchController extends Controller
         if ($price) {
             $query->where('price', '<=', $price);
         }
-        if ($day) {
-            $query->where('day', $day);
+        if ($date) {
+            $query->where('date', $date);
         }
 
         $trips = $query->get();
