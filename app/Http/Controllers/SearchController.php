@@ -42,9 +42,23 @@ class SearchController extends Controller
         $trips = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')
         ->join('drivers', 'buses.driver_id', '=', 'drivers.id')
-        ->select('trips.id','trips.day','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
+        ->select('trips.id','trips.date','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
         ->get();
 
     return $trips;
     }
+
+    public function tripById(Request $request)
+{
+    $id = $request->input('id');
+
+    $trip = DB::table('trips')
+        ->join('buses', 'trips.bus_id', '=', 'buses.id')
+        ->join('drivers', 'buses.driver_id', '=', 'drivers.id')
+        ->select('trips.id', 'trips.date', 'trips.departure_time', 'trips.arrival_time', 'trips.from', 'trips.to', 'trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
+        ->where('trips.id', $id)
+        ->first();
+
+    return response()->json($trip);
+}
 }
