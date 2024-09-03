@@ -31,7 +31,7 @@ class TripFactory extends Factory
                 'end_stop' => fake()->city,
             ]
         ]),
-            'price' => fake()->randomNumber(2),
+            'price' => fake()->numberBetween(1, 3),
             'date' => fake()->dateTimeBetween('now', '+1 week')->format('Y-m-d'),
             'departure_time' => function () {
                 $hour = fake()->numberBetween(0, 23);
