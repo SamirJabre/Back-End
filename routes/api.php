@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\SearchController;
@@ -31,3 +32,4 @@ Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverified
 Route::post('/search', [SearchController::class, 'searchTrips']);
 Route::get('/trips', [SearchController::class, 'trips']);
 Route::post('/tripinfo', [SearchController::class, 'tripById']);
+Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
