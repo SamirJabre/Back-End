@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'password' => fake()->password(),
+            'profile_picture' => fake()->imageUrl(),
             'remember_token' => Str::random(10),
         ];
     }
