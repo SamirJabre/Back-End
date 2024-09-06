@@ -7,6 +7,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SendOtpAgain;
+use App\Http\Controllers\TripBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,4 @@ Route::get('/trips', [SearchController::class, 'trips']);
 Route::post('/tripinfo', [SearchController::class, 'tripById']);
 Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
 Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
+Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
