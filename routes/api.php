@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\DeactivatingAccount;
@@ -27,7 +28,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-    Route::post('adminlogin', 'adminLogin');
 });
 Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
@@ -39,3 +39,4 @@ Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
 Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
 Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
 Route::post('/getuser', [SearchController::class, 'getUserById']);
+Route::post('/adminlogin', [AdminController::class, 'login']);
