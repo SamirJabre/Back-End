@@ -79,8 +79,18 @@ class AuthController extends Controller
         ]);
     }
 
+public function getUserById(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:users,id',
+    ]);
 
-    
+    $user = User::find($request->id);
+    return response()->json([
+        'status' => 'success',
+        'user' => $user,
+    ]);
+}
 
 
     
