@@ -27,7 +27,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-    Route::post('getuser', 'getUserById');
+    Route::post('adminlogin', 'adminLogin');
 });
 Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
@@ -38,3 +38,4 @@ Route::post('/tripinfo', [SearchController::class, 'tripById']);
 Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
 Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
 Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
+Route::post('/getuser', [SearchController::class, 'getUserById']);

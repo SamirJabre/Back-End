@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trip;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -75,5 +76,18 @@ class SearchController extends Controller
         ->first();
 
     return response()->json($trip);
+}
+
+public function getUserById(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:users,id',
+    ]);
+
+    $user = User::find($request->id);
+    return response()->json([
+        'status' => 'success',
+        'user' => $user,
+    ]);
 }
 }

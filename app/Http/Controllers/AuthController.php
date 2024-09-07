@@ -52,6 +52,8 @@ class AuthController extends Controller
 
     }
 
+    
+
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -78,22 +80,6 @@ class AuthController extends Controller
             ]
         ]);
     }
-
-public function getUserById(Request $request)
-{
-    $request->validate([
-        'id' => 'required|exists:users,id',
-    ]);
-
-    $user = User::find($request->id);
-    return response()->json([
-        'status' => 'success',
-        'user' => $user,
-    ]);
-}
-
-
-    
 
 
 
