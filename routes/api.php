@@ -27,6 +27,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+    Route::post('getuser', 'getUserById');
 });
 Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
