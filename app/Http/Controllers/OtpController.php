@@ -31,6 +31,7 @@ class OtpController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'OTP verified successfully. User is now verified.',
+                'user' => $user,
             ]);
         } else {
             return response()->json([

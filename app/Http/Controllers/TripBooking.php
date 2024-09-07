@@ -16,6 +16,7 @@ class TripBooking extends Controller
     ]);
 
     $isPaid = $request->input('is_paid', false);
+    $userId = intval($request->input('user_id'));
 
     $user = User::find($request->input('user_id'));
     $tripsHistory = json_decode($user->trips_history, true);
