@@ -40,3 +40,4 @@ Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
 Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
 Route::post('/getuser', [SearchController::class, 'getUserById']);
 Route::post('/adminlogin', [AdminController::class, 'login']);
+Route::get('/getusers', [AdminController::class, 'getAllUsers']);

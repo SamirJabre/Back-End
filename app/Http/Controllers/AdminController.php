@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,5 +24,12 @@ class AdminController extends Controller
                 'token' => $token,
             ], 200);
         
+    }
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return response()->json([
+            'users' => $users,
+        ], 200);
     }
 }
