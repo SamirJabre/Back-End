@@ -42,3 +42,5 @@ Route::post('/getuser', [SearchController::class, 'getUserById']);
 Route::post('/adminlogin', [AdminController::class, 'login']);
 Route::get('/getusers', [AdminController::class, 'getAllUsers']);
 Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
+Route::get('/getcities', [AdminController::class, 'getCities']);
+Route::post('/createtrip', [AdminController::class, 'createTrip']);
