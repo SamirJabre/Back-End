@@ -32,4 +32,12 @@ class AdminController extends Controller
             'users' => $users,
         ], 200);
     }
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ], 200);
+    }
 }

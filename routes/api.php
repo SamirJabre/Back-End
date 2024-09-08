@@ -41,3 +41,4 @@ Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
 Route::post('/getuser', [SearchController::class, 'getUserById']);
 Route::post('/adminlogin', [AdminController::class, 'login']);
 Route::get('/getusers', [AdminController::class, 'getAllUsers']);
+Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
