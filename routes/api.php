@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BusLocationController;
 use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\OtpController;
@@ -44,3 +45,4 @@ Route::get('/getusers', [AdminController::class, 'getAllUsers']);
 Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
 Route::get('/getcities', [AdminController::class, 'getCities']);
 Route::post('/createtrip', [AdminController::class, 'createTrip']);
+Route::post('/update-location', [BusLocationController::class, 'updateLocation']);

@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Bus extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['current_location'];
+    
     public function driver(){
         return $this->belongsTo(Driver::class);
     }
