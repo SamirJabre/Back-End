@@ -23,7 +23,8 @@ io.on('connection', (socket) => {
     // Make HTTP request to Laravel backend
     axios.post(LARAVEL_API_URL, {
       busId: data.busId,
-      current_location: data.current_location,
+      current_latitude: data.current_latitude,
+      current_longitude: data.current_longitude
     })
     .then(response => {
       console.log('Location updated in Laravel:', response.data);

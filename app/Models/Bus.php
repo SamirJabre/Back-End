@@ -10,7 +10,10 @@ class Bus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['current_location'];
+    protected $fillable = [
+        'current_latitude',
+        'current_longitude',
+    ];
     
     public function driver(){
         return $this->belongsTo(Driver::class);
