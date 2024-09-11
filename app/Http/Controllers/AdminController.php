@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Application;
 use App\Models\City;
 use App\Models\Trip;
 use App\Models\User;
@@ -108,6 +109,14 @@ class AdminController extends Controller
             'message' => 'Trip created successfully',
             'trip' => $trip,
         ], 201);
+    }
+
+    public function getAllApplications()
+    {
+        $applications = Application::all();
+        return response()->json(
+            $applications
+        , 200);
     }
 
 }
