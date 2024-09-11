@@ -49,3 +49,4 @@ Route::post('/createtrip', [AdminController::class, 'createTrip']);
 Route::post('/update-location', [BusLocationController::class, 'updateLocation']);
 Route::post('/driver-app', [DriverAppController::class, 'createDriverApplication']);
 Route::get('/get-apps', [AdminController::class, 'getAllApplications']);
+Route::post('/approve-app', [AdminController::class, 'acceptApplicant']);

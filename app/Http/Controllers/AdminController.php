@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Application;
 use App\Models\City;
+use App\Models\Driver;
 use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -118,5 +119,39 @@ class AdminController extends Controller
             $applications
         , 200);
     }
+
+
+    public function acceptApplicant(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8',
+            'phone_number' => 'required|string|max:15',
+            'profile_picture' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'id_photo' => 'required|string|max:255',
+            'driver_license' => 'required|string|max:255',
+            'id' => 'required|integer|exists:applications,id',
+        ]);
+
+        $driver = new Driver();
+        $driver->name = $validatedData['name'];
+        $driver->email = $validatedData['email'];
+        $driver->password = $validatedData['password'];
+        $driver->phone_number = $validatedData['phone_number'];
+        $driver->profile_picture = $validatedData['profile_picture'];
+        $driver->address = $validatedData['address'];
+        $driver->id_photo = $validatedData['id_photo'];
+        $driver->driver_license = $validatedData['driver_license'];
+        $driver->save();
+
+        Application::destroy($validatedData['id']);
+
+        return response()->json(['message' => 'Driver application Approved'], 201);
+    }
+
+
+
 
 }
