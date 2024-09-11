@@ -11,7 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('drivers_app', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('phone_number');
+            $table->string('profile_picture');
+            $table->string('address');
+            $table->string('id_photo');
+            $table->string('driver_license');
+            $table->integer('assigned_bus')->nullable();
+            $table->json('trips_history')->nullable();
+            $table->integer('rating');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
