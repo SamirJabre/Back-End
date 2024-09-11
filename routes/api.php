@@ -50,3 +50,6 @@ Route::post('/update-location', [BusLocationController::class, 'updateLocation']
 Route::post('/driver-app', [DriverAppController::class, 'createDriverApplication']);
 Route::get('/get-apps', [AdminController::class, 'getAllApplications']);
 Route::post('/approve-app', [AdminController::class, 'acceptApplicant']);
+Route::post('/reject-app', [AdminController::class, 'rejectApplicant']);
+Route::get('/buses', [AdminController::class, 'getBuses']);
+Route::get('/drivers', [AdminController::class, 'getDrivers']);

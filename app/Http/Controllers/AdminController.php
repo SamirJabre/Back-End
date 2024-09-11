@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Application;
+use App\Models\Bus;
 use App\Models\City;
 use App\Models\Driver;
 use App\Models\Trip;
@@ -152,6 +153,31 @@ class AdminController extends Controller
     }
 
 
+    public function rejectApplicant(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:applications,id',
+        ]);
 
+        Application::destroy($validatedData['id']);
+
+        return response()->json(['message' => 'Driver application Rejected'], 201);
+    }
+
+    public function getBuses()
+    {
+        $buses = Bus::all();
+        return response()->json([
+            'buses' => $buses,
+        ], 200);
+    }
+
+    public function getDrivers()
+    {
+        $drivers = Driver::all();
+        return response()->json(
+        $drivers
+        , 200);
+    }
 
 }
