@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('driver_id')->nullable();
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate("cascade");
             $table->decimal('current_latitude', 10, 7)->nullable();
             $table->decimal('current_longitude', 10, 7)->nullable();

@@ -180,4 +180,26 @@ class AdminController extends Controller
         , 200);
     }
 
+    public function assignDriverToBus(Request $request)
+{
+    // Validate the input
+    $validatedData = $request->validate([
+        'driver_id' => 'required|exists:drivers,id',
+        'bus_id' => 'required|exists:buses,id',
+    ]);
+
+    // Find the bus by its ID
+    $bus = Bus::find($validatedData['bus_id']);
+
+    // Assign the driver to the bus
+    $bus->driver_id = $validatedData['driver_id'];
+    $bus->save();
+
+    // Return a success response
+    return response()->json([
+        'message' => 'Driver assigned to bus successfully',
+        'bus' => $bus,
+    ], 200);
+}
+
 }
