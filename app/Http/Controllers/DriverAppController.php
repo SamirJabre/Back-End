@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Driver;
+use App\Models\Trip;
 use Illuminate\Http\Request;
 
 class DriverAppController extends Controller
@@ -48,6 +49,24 @@ class DriverAppController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        return response()->json([$driver], 200);
+        return response()->json($driver, 200);
     }
+
+    public function getTripsByDriverId(Request $request)
+{
+    // Validate the driver_id from the request
+    $validatedData = $request->validate([
+        'driver_id' => 'required|integer|exists:drivers,id',
+    ]);
+
+    // Retrieve trips by joining trips and buses tables
+    $trips = Trip::join('buses', 'trips.bus_id', '=', 'buses.id')
+                 ->where('buses.driver_id', $validatedData['driver_id'])
+                 ->select('trips.*')
+                 ->get();
+
+    // Return the trips in a JSON response
+    return response()->json($trips, 200);
+}
+
 }
