@@ -42,12 +42,12 @@ class DriverAppController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        $driverApplication = Driver::where('email', $validatedData['email'])->first();
+        $driver = Driver::where('email', $validatedData['email'])->first();
 
-        if (!$driverApplication || $driverApplication->password !== $validatedData['password']) {
+        if (!$driver || $driver->password !== $validatedData['password']) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['message' => 'Driver logged in successfully'], 200);
+        return response()->json([$driver], 200);
     }
 }
