@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 
 class DriverAppController extends Controller
@@ -32,5 +33,21 @@ class DriverAppController extends Controller
         $driverApplication->save();
 
         return response()->json(['message' => 'Driver application created successfully'], 201);
+    }
+    
+    public function driverLogin(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
+        $driverApplication = Driver::where('email', $validatedData['email'])->first();
+
+        if (!$driverApplication || $driverApplication->password !== $validatedData['password']) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        return response()->json(['message' => 'Driver logged in successfully'], 200);
     }
 }

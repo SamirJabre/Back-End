@@ -54,3 +54,4 @@ Route::post('/reject-app', [AdminController::class, 'rejectApplicant']);
 Route::get('/buses', [AdminController::class, 'getBuses']);
 Route::get('/drivers', [AdminController::class, 'getDrivers']);
 Route::post('/assign', [AdminController::class, 'assignDriverToBus']);
+Route::post('driver-login', [DriverAppController::class, 'driverLogin']);
