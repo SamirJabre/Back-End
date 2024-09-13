@@ -21,6 +21,7 @@ return new class extends Migration
             $table->time('departure_time');
             $table->time('arrival_time');
             $table->string('from');
+            $table->text('qr_code')->nullable();
             $table->string('to');
             $table->timestamps();
         });
@@ -31,6 +32,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('trips', function (Blueprint $table) {
+            $table->dropColumn('qr_code');
+        });
     }
 };

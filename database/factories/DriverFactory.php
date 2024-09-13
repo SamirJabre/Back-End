@@ -24,6 +24,7 @@ class DriverFactory extends Factory
             'password' => fake()->password,
             'phone_number' => fake()->phoneNumber,
             'profile_picture' => fake()->imageUrl(),
+            'age' => fake()->numberBetween(18, 60),
             'address' => fake()->address,
             'id_photo' => fake()->imageUrl(),
             'driver_license' => fake()->randomNumber(8),
