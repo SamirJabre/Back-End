@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('phone_number');
+            $table->integer('age'),
             $table->string('profile_picture');
             $table->string('address');
             $table->string('id_photo');
