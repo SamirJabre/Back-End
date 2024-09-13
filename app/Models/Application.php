@@ -14,6 +14,7 @@ class Application extends Model
         'password',
         'phone_number',
         'profile_picture',
+        'age',
         'address',
         'id_photo',
         'driver_license',
