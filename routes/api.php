@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusLocationController;
+use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\DriverAppController;
@@ -56,3 +57,4 @@ Route::get('/drivers', [AdminController::class, 'getDrivers']);
 Route::post('/assign', [AdminController::class, 'assignDriverToBus']);
 Route::post('/driver-login', [DriverAppController::class, 'driverLogin']);
 Route::post('/driver-trips', [DriverAppController::class, 'getTripsByDriverId']);
+Route::post('/get-seats', [BusSeatController::class, 'getSeats']);

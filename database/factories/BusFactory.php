@@ -18,22 +18,31 @@ class BusFactory extends Factory
 
     public function definition(): array
     {
+        $seatsData = $this->generateSeats();
         return [
             'driver_id' => Driver::factory(),
-            'seats' => json_encode($this->generateSeats()),
-            'passenger_load' => fake()->numberBetween(0, 42),
+            'seats' => json_encode($seatsData['seats']),
+            'passenger_load' => $seatsData['occupied_count'],
             'bus_number' => fake()->unique()->numberBetween(100, 999),
         ];
     }
     private function generateSeats()
     {
         $seats = [];
+        $occupiedCount = 0;
         for ($i = 1; $i <= 42; $i++) {
+            $status = rand(0, 1) ? 'available' : 'occupied';
+            if ($status === 'occupied') {
+                $occupiedCount++;
+            }
             $seats[] = [
                 'seat_number' => $i,
-                'status' => rand(0, 1) ? 'available' : 'occupied'
+                'status' => $status
             ];
         }
-        return $seats;
+        return [
+            'seats' => $seats,
+            'occupied_count' => $occupiedCount
+        ];
     }
 }
