@@ -16,6 +16,7 @@ class DriverAppController extends Controller
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:8',
             'phone_number' => 'required|string|max:15',
+            'age' => 'required|integer',
             'profile_picture' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'id_photo' => 'required|string|max:255',
@@ -27,6 +28,7 @@ class DriverAppController extends Controller
         $driverApplication->email = $validatedData['email'];
         $driverApplication->password = $validatedData['password'];
         $driverApplication->phone_number = $validatedData['phone_number'];
+        $driverApplication->age = $validatedData['age'];
         $driverApplication->profile_picture = $validatedData['profile_picture'];
         $driverApplication->address = $validatedData['address'];
         $driverApplication->id_photo = $validatedData['id_photo'];
