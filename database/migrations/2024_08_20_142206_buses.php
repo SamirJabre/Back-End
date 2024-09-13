@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate("cascade");
             $table->decimal('current_latitude', 10, 7)->nullable();
             $table->decimal('current_longitude', 10, 7)->nullable();
-            $table->integer('max_capacity');
+            $table->json('seats');
             $table->integer('passenger_load');
             $table->integer('bus_number');
             $table->rememberToken();

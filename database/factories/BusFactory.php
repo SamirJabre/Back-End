@@ -18,12 +18,22 @@ class BusFactory extends Factory
 
     public function definition(): array
     {
-        $maxCapacity = fake()->numberBetween(50, 100);
         return [
             'driver_id' => Driver::factory(),
-            'max_capacity' => $maxCapacity,
-            'passenger_load' => fake()->numberBetween(0, $maxCapacity),
+            'seats' => json_encode($this->generateSeats()),
+            'passenger_load' => fake()->numberBetween(0, 42),
             'bus_number' => fake()->unique()->numberBetween(100, 999),
         ];
+    }
+    private function generateSeats()
+    {
+        $seats = [];
+        for ($i = 1; $i <= 42; $i++) {
+            $seats[] = [
+                'seat_number' => $i,
+                'status' => rand(0, 1) ? 'available' : 'occupied'
+            ];
+        }
+        return $seats;
     }
 }
