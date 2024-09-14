@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
@@ -15,6 +16,13 @@ class SearchController extends Controller
     $to = $request->input('to');
     $price = $request->input('price');
     $date = $request->input('date');
+    $token = $request->header('Authorization');
+
+    // Check if the token is present
+    if (!$token) {
+        // Return unauthorized response if no token is found
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
 
     $query = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')

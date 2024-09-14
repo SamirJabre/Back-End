@@ -44,6 +44,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+    protected $routeMiddleware = [
+        // Other middleware
+        'checkverified' => \App\Http\Middleware\CheckVerified::class,
+    ];
 
     /**
      * The application's middleware aliases.

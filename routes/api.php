@@ -27,15 +27,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::post('login', 'login')->middleware(middleware: 'checkverified');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
+
+
 Route::post('/sendotp', [SendOtpAgain::class, 'updateOtpAndSendEmail']);
 Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
 Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverifiedUsers']);
-Route::post('/search', [SearchController::class, 'searchTrips']);
+
+
+Route::post('/search', [SearchController::class, 'searchTrips'])->middleware('auth:api');
+
+
 Route::get('/trips', [SearchController::class, 'trips']);
 Route::post('/tripinfo', [SearchController::class, 'tripById']);
 Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
