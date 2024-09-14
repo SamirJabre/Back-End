@@ -47,12 +47,15 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
     Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
     Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
+    Route::post('/get-seats', [BusSeatController::class, 'getSeats']);
 });
 
 
 
 Route::post('/adminlogin', [AdminController::class, 'login']);
-Route::get('/getusers', [AdminController::class, 'getAllUsers']);
+
+Route::middleware('auth:sanctum')->get('/getAllUsers', [AdminController::class, 'getAllUsers']);
+
 Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
 Route::get('/getcities', [AdminController::class, 'getCities']);
 Route::post('/createtrip', [AdminController::class, 'createTrip']);
@@ -66,5 +69,4 @@ Route::get('/drivers', [AdminController::class, 'getDrivers']);
 Route::post('/assign', [AdminController::class, 'assignDriverToBus']);
 Route::post('/driver-login', [DriverAppController::class, 'driverLogin']);
 Route::post('/driver-trips', [DriverAppController::class, 'getTripsByDriverId']);
-Route::post('/get-seats', [BusSeatController::class, 'getSeats']);
 Route::post('/updateseat', [BusSeatController::class, 'updateSeat']);

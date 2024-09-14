@@ -10,6 +10,10 @@ class BusSeatController extends Controller
     public function getSeats(Request $request)
     {
         $busId = $request->bus_id;
+        $token = $request->header('Authorization');
+        if (!$token) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
         $bus = Bus::find($busId);
         $seats = $bus->seats;
         return json_decode($seats);
