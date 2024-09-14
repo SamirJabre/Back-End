@@ -16,6 +16,7 @@ class SearchController extends Controller
     $to = $request->input('to');
     $price = $request->input('price');
     $date = $request->input('date');
+
     $token = $request->header('Authorization');
 
     // Check if the token is present
@@ -61,16 +62,26 @@ class SearchController extends Controller
     return response()->json($trips);
 }
 
-    public function trips()
-    {
-        $trips = DB::table('trips')
+public function trips(Request $request)
+{
+    // Retrieve the JWT token from the request headers
+    $token = $request->header('Authorization');
+
+    // Check if the token is present
+    if (!$token) {
+        // Return unauthorized response if no token is found
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    // Proceed with the existing functionality of the trips function
+    $trips = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')
         ->join('drivers', 'buses.driver_id', '=', 'drivers.id')
-        ->select('trips.id','trips.date','trips.departure_time','trips.arrival_time','trips.from','trips.to','trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
+        ->select('trips.id', 'trips.date', 'trips.departure_time', 'trips.arrival_time', 'trips.from', 'trips.to', 'trips.price', 'buses.passenger_load', 'drivers.name', 'drivers.rating')
         ->get();
 
     return $trips;
-    }
+}
 
     public function tripById(Request $request)
 {

@@ -39,10 +39,12 @@ Route::post('/validate-otp', [OtpController::class, 'validateOtp']);
 Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverifiedUsers']);
 
 
-Route::post('/search', [SearchController::class, 'searchTrips'])->middleware('auth:api');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('/search', [SearchController::class, 'searchTrips']);
+    Route::get('/trips', [SearchController::class, 'trips']);
+});
 
 
-Route::get('/trips', [SearchController::class, 'trips']);
 Route::post('/tripinfo', [SearchController::class, 'tripById']);
 Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
 Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
