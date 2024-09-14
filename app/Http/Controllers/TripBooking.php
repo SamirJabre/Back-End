@@ -16,6 +16,10 @@ class TripBooking extends Controller
             'trip_id' => 'required|exists:trips,id',
             'seat_number' => 'required|integer|min:1|max:42'
         ]);
+        $token = $request->header('Authorization');
+        if (!$token) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
 
         $userId = intval($request->input('user_id'));
 
