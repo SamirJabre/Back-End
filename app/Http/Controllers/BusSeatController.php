@@ -12,7 +12,7 @@ class BusSeatController extends Controller
         $busId = $request->bus_id;
         $bus = Bus::find($busId);
         $seats = $bus->seats;
-        return $seats;
+        return json_decode($seats);
     }
 
 
@@ -32,4 +32,65 @@ class BusSeatController extends Controller
         $bus->save();
         return response()->json(['message' => 'Seat booked successfully']);
     }
+
+    // public function updateSeat(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'busId' => 'required|integer',
+    //         'seatNumber' => 'required|integer',
+    //         'distance' => 'required|numeric',
+    //     ]);
+    //     $bus = Bus::find($validatedData['busId']);
+    //     $bus = json_decode($bus);
+    //     $seats = $bus->seats;
+    //     $seats = json_decode($seats);
+    //     $seat = $seats[$validatedData['seatNumber'] - 1];
+    //     // $seats[$validatedData['seatNumber'] - 1] = $seat;
+    //     $distance = $validatedData['distance'];
+    //     if ($distance < 50) {
+            
+    //         $seat->status = 'occupied';
+    //     }
+    //     else {
+    //         $seat->status = 'available';
+    //     }
+    //     $bus->seats = $seats;
+    //     $bus->save();
+    //     return $bus;
+    //     return response()->json(['message' => 'Seat updated successfully']);     
+    // }
+    // <?php
+    public function updateSeat(Request $request)
+    {
+        $validatedData = $request->validate([
+            'busId' => 'required|integer',
+            'seatNumber' => 'required|integer',
+            'distance' => 'required|numeric',
+        ]);
+    
+        $bus = Bus::find($validatedData['busId']);
+        if (!$bus) {
+            return response()->json(['message' => 'Bus not found'], 404);
+        }
+    
+        $seats = json_decode($bus->seats);
+        if (!isset($seats[$validatedData['seatNumber'] - 1])) {
+            return response()->json(['message' => 'Seat not found'], 404);
+        }
+    
+        $seat = $seats[$validatedData['seatNumber'] - 1];
+        $distance = $validatedData['distance'];
+    
+        if ($distance < 50) {
+            $seat->status = 'occupied';
+        } else {
+            $seat->status = 'available';
+        }
+    
+        $bus->seats = json_encode($seats);
+        $bus->save();
+    
+        return response()->json(['message' => 'Seat updated successfully', 'bus' => $bus]);
+    }
+
 }

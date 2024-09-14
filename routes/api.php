@@ -58,3 +58,4 @@ Route::post('/assign', [AdminController::class, 'assignDriverToBus']);
 Route::post('/driver-login', [DriverAppController::class, 'driverLogin']);
 Route::post('/driver-trips', [DriverAppController::class, 'getTripsByDriverId']);
 Route::post('/get-seats', [BusSeatController::class, 'getSeats']);
+Route::post('/updateseat', [BusSeatController::class, 'updateSeat']);
