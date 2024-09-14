@@ -11,6 +11,11 @@ class ReviewController extends Controller
 {
     $id = $request->input('id');
 
+    $token = $request->header('Authorization');
+    if (!$token) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
     $reviews = DB::table('reviews')
         ->join('users', 'reviews.user_id', '=', 'users.id')
         ->select(
