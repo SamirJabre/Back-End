@@ -14,6 +14,10 @@ class CoordinateController extends Controller
 
     public function getCoordinates(Request $request)
     {
+        $token = $request->header('Authorization');
+        if (!$token) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
         $from = $request->input('from');
         $to = $request->input('to');
         $coordinates = DB::table('cities')
