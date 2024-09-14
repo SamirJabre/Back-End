@@ -42,6 +42,7 @@ Route::post('/delete-unverified', [DeactivatingAccount::class, 'deleteUnverified
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/search', [SearchController::class, 'searchTrips']);
     Route::get('/trips', [SearchController::class, 'trips']);
+    Route::post('/getuser', [SearchController::class, 'getUserById']);
 });
 
 
@@ -49,7 +50,6 @@ Route::post('/tripinfo', [SearchController::class, 'tripById']);
 Route::post('/coordinates', [CoordinateController::class, 'getCoordinates']);
 Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
 Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
-Route::post('/getuser', [SearchController::class, 'getUserById']);
 Route::post('/adminlogin', [AdminController::class, 'login']);
 Route::get('/getusers', [AdminController::class, 'getAllUsers']);
 Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);

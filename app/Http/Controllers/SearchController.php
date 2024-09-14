@@ -18,10 +18,7 @@ class SearchController extends Controller
     $date = $request->input('date');
 
     $token = $request->header('Authorization');
-
-    // Check if the token is present
     if (!$token) {
-        // Return unauthorized response if no token is found
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
@@ -64,12 +61,8 @@ class SearchController extends Controller
 
 public function trips(Request $request)
 {
-    // Retrieve the JWT token from the request headers
     $token = $request->header('Authorization');
-
-    // Check if the token is present
     if (!$token) {
-        // Return unauthorized response if no token is found
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
@@ -99,6 +92,10 @@ public function trips(Request $request)
 
 public function getUserById(Request $request)
 {
+    $token = $request->header('Authorization');
+    if (!$token) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
     $request->validate([
         'id' => 'required|exists:users,id',
     ]);
