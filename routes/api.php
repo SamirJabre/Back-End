@@ -7,6 +7,7 @@ use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\DeactivatingAccount;
 use App\Http\Controllers\DriverAppController;
+use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/driver-reviews', [ReviewController::class, 'driverReviews']);
     Route::post('/book-trip', [TripBooking::class, 'bookTrip']);
     Route::post('/get-seats', [BusSeatController::class, 'getSeats']);
+    Route::put('/profile/{user_id}', [EditProfileController::class, 'updateProfile']);
 });
 
 
