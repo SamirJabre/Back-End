@@ -129,6 +129,7 @@ class AdminController extends Controller
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:8',
             'phone_number' => 'required|string|max:15',
+            'age' => 'required|integer',
             'profile_picture' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'id_photo' => 'required|string|max:255',
@@ -141,6 +142,7 @@ class AdminController extends Controller
         $driver->email = $validatedData['email'];
         $driver->password = $validatedData['password'];
         $driver->phone_number = $validatedData['phone_number'];
+        $driver->age = $validatedData['age'];
         $driver->profile_picture = $validatedData['profile_picture'];
         $driver->address = $validatedData['address'];
         $driver->id_photo = $validatedData['id_photo'];
