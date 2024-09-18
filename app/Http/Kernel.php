@@ -44,6 +44,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+    protected $routeMiddleware = [
+        // Other middleware
+        'checkverified' => \App\Http\Middleware\CheckVerified::class,
+    ];
 
     /**
      * The application's middleware aliases.
@@ -63,5 +67,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'jwt.auth' => \App\Http\Middleware\JwtAuthMiddleware::class,
     ];
 }
