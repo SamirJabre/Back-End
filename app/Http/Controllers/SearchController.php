@@ -79,10 +79,7 @@ public function trips(Request $request)
     public function tripById(Request $request)
 {
     $id = $request->input('id');
-    $token = $request->header('Authorization');
-    if (!$token) {
-        return response()->json(['error' => 'Unauthorized'], 401);
-    }
+    
 
     $trip = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')
