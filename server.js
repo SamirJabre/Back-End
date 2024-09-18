@@ -12,7 +12,7 @@ const io = new Server(server, {
   },
 });
 
-const LARAVEL_API_URL = 'http://192.168.1.108:8000/api/update-location'; // Laravel API URL
+const LARAVEL_API_URL = 'http://192.168.1.107:8000/api/update-location'; // Laravel API URL
 
 io.on('connection', (socket) => {
   console.log('A user connected');

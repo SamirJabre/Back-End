@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $route = [];
         for ($i = $fromId; $i <= $toId; $i++) {
-            $route[] = ['id' => $i, 'name' => $cities[$i]];
+            $route[] = ['id' => $i, 'name' => $cities[$i]]; 
         }
 
         // Create a new trip
