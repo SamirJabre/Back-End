@@ -74,6 +74,8 @@ Route::get('/drivers', [AdminController::class, 'getDrivers']);
 Route::post('/assign', [AdminController::class, 'assignDriverToBus']);
 Route::post('/driver-trips', [DriverAppController::class, 'getTripsByDriverId']);
 Route::post('/updateseat', [BusSeatController::class, 'updateSeat']);
+Route::post('/make-review', [ReviewController::class, 'createReview']);
+Route::post('/get-driver-id', [ReviewController::class, 'getDriverId']);
 
 Route::middleware('jwt.auth')->group(function () {
 });
