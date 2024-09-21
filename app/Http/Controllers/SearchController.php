@@ -66,7 +66,6 @@ public function trips(Request $request)
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    // Proceed with the existing functionality of the trips function
     $trips = DB::table('trips')
         ->join('buses', 'trips.bus_id', '=', 'buses.id')
         ->join('drivers', 'buses.driver_id', '=', 'drivers.id')

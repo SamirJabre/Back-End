@@ -30,19 +30,16 @@ class TripBooking extends Controller
             $tripsHistory = [];
         }
 
-        // Check if the trip is already booked
         foreach ($tripsHistory as $trip) {
             if ($trip['trip_id'] == $request->input('trip_id')) {
                 return response()->json(['message' => 'Trip already booked'], 200);
             }
         }
 
-        // Retrieve the bus associated with the trip
         $trip = Trip::find($request->input('trip_id'));
         $bus = Bus::find($trip->bus_id);
         $seats = json_decode($bus->seats, true);
 
-        // Check if the seat is available
         $seatNumber = intval($request->input('seat_number'));
         foreach ($seats as &$seat) {
             if ($seat['seat_number'] == $seatNumber) {
@@ -55,10 +52,8 @@ class TripBooking extends Controller
             }
         }
 
-        // Save the updated seats back to the bus
         $bus->seats = json_encode($seats);
 
-        // Update the passenger_load to reflect the number of occupied seats
         $occupiedCount = 0;
         foreach ($seats as $seat) {
             if ($seat['status'] == 'occupied') {
@@ -68,7 +63,6 @@ class TripBooking extends Controller
         $bus->passenger_load = $occupiedCount;
         $bus->save();
 
-        // Add the new trip to the user's history
         $tripsHistory[] = [
             'trip_id' => $request->input('trip_id'),
             'seat_number' => $seatNumber

@@ -55,7 +55,6 @@ class AdminController extends Controller
     }
     public function createTrip(Request $request)
     {
-        // Validate the request
         $request->validate([
             'from' => 'required|string|max:255',
             'to' => 'required|string|max:255',
@@ -66,7 +65,6 @@ class AdminController extends Controller
             'bus_id' => 'required|integer|exists:buses,id',
         ]);
 
-        // List of cities with their IDs and names
         $cities = [
             1 => 'Tripoli',
             2 => 'Anfeh',
@@ -79,7 +77,6 @@ class AdminController extends Controller
             9 => 'Beirut',
         ];
 
-        // Generate the route based on the from and to city IDs
         $fromId = array_search($request->from, $cities);
         $toId = array_search($request->to, $cities);
 
@@ -94,7 +91,6 @@ class AdminController extends Controller
             $route[] = ['id' => $i, 'name' => $cities[$i]]; 
         }
 
-        // Create a new trip
         $trip = Trip::create([
             'from' => $request->from,
             'to' => $request->to,
@@ -103,10 +99,9 @@ class AdminController extends Controller
             'arrival_time' => $request->arrival_time,
             'price' => $request->price,
             'bus_id' => $request->bus_id,
-            'routes' => json_encode($route), // Include routes as JSON
+            'routes' => json_encode($route),
         ]);
 
-        // Return a success response with the created trip details
         return response()->json([
             'message' => 'Trip created successfully',
             'trip' => $trip,
@@ -184,20 +179,16 @@ class AdminController extends Controller
 
     public function assignDriverToBus(Request $request)
 {
-    // Validate the input
     $validatedData = $request->validate([
         'driver_id' => 'required|exists:drivers,id',
         'bus_id' => 'required|exists:buses,id',
     ]);
 
-    // Find the bus by its ID
     $bus = Bus::find($validatedData['bus_id']);
 
-    // Assign the driver to the bus
     $bus->driver_id = $validatedData['driver_id'];
     $bus->save();
 
-    // Return a success response
     return response()->json([
         'message' => 'Driver assigned to bus successfully',
         'bus' => $bus,

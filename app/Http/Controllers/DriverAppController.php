@@ -56,18 +56,15 @@ class DriverAppController extends Controller
 
     public function getTripsByDriverId(Request $request)
 {
-    // Validate the driver_id from the request
     $validatedData = $request->validate([
         'driver_id' => 'required|integer|exists:drivers,id',
     ]);
 
-    // Retrieve trips by joining trips and buses tables
     $trips = Trip::join('buses', 'trips.bus_id', '=', 'buses.id')
                  ->where('buses.driver_id', $validatedData['driver_id'])
                  ->select('trips.*')
                  ->get();
 
-    // Return the trips in a JSON response
     return response()->json($trips, 200);
 }
 

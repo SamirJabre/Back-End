@@ -39,7 +39,6 @@ public function createReview(Request $request)
         $comment = $request->input('comment');
         $rating = $request->input('rating');
 
-        // Validate inputs
         $validator = Validator::make($request->all(), [
             'driver_id' => 'required|integer|exists:drivers,id',
             'user_id' => 'required|integer|exists:users,id',
@@ -51,7 +50,6 @@ public function createReview(Request $request)
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-        // Insert the new review
         DB::table('reviews')->insert([
             'driver_id' => $driver_id,
             'user_id' => $user_id,

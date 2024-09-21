@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User; // Ensure User model is imported
+use App\Models\User;
 
 class EditProfileController extends Controller
 {
     public function updateProfile(Request $request, $user_id)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:users,email,' . $user_id,
@@ -24,10 +23,8 @@ class EditProfileController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        // Find the user by ID
         $user = User::findOrFail($user_id);
 
-        // Update user details only if provided
         if (!empty($validatedData['name'])) {
             $user->name = $validatedData['name'];
         }
@@ -41,10 +38,8 @@ class EditProfileController extends Controller
             $user->profile_picture = $validatedData['profile_picture'];
         }
 
-        // Save the updated user model
         $user->save();
 
-        // Return a response
         return response()->json(['message' => 'Profile updated successfully'], 200);
     }
 }

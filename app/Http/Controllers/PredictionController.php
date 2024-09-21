@@ -8,7 +8,6 @@ class PredictionController extends Controller
 {
     public function getPrediction(Request $request)
     {
-        // Collect the necessary input data from the request
         $data = [
             'departure_hour' => $request->input('departure_hour'),
             'departure_minute' => $request->input('departure_minute'),
@@ -32,17 +31,13 @@ class PredictionController extends Controller
             'to_Beirut' => $request->input('to_Beirut',0)
         ];
 
-        // Make a POST request to the FastAPI service
         $response = Http::post('http://localhost:8000/predict', $data);
 
-        // Check if the FastAPI service returned a successful response
         if ($response->successful()) {
-            // Return the prediction result to the client
             return response()->json([
                 'predicted_arrival_time' => $response->json('predicted_arrival_time')
             ]);
         } else {
-            // Handle errors
             return response()->json([
                 'error' => 'Failed to get prediction from FastAPI'
             ], 500);
