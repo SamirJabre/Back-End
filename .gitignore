@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/MLmodel/.venv
 .env
 .env.backup
 .env.production
